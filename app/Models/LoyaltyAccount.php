@@ -41,4 +41,14 @@ class LoyaltyAccount extends Model
             Log::info('Account: phone: ' . $this->phone . ' ' . ($this->active ? 'Activated' : 'Deactivated'));
         }
     }
+
+    public function isEligibleForEmailNotification(): bool
+    {
+        return $this->email !== '' && $this->email_notification;
+    }
+
+    public function isEligibleForPhoneNotification(): bool
+    {
+        return $this->phone !== '' && $this->phone_notification;
+    }
 }
